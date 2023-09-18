@@ -11,6 +11,15 @@ canvas.height = 576;
 let players = []; 
 let obstacles = [];
 
+function scroll(player, obstacles){
+    if(player.position.x > 0.7 * canvas.width || player.position.x < 0.3 * canvas.width){
+        obstacles.forEach(obstacle => {
+            obstacle.velocity = -1 * player.velocity.x; 
+            obstacle.update();    
+        })
+    }
+}
+
 function gameLoop(){ 
     const upPressed = keyboardState['w'];
     const leftPressed = keyboardState['a'];
@@ -31,13 +40,15 @@ function gameLoop(){
     }
     
     // Collision detection and object drawing
-    for(let i = 0; i < obstacles.length; i++){
-        obstacles[i].draw();
-    } 
+    obstacles.forEach(obstacle => {
+        obstacle.draw(); 
+    })
     for(let i = 0; i < players.length ; i++){ 
         players[i].update();  
-        players[i].collide(obstacles);   
+        players[i].collide(obstacles);    
     } 
+    scroll(p1, obstacles); 
+    console.log(p1.velocity.x); 
 }
 
 
