@@ -1,20 +1,21 @@
 import wall from "./objects.js";
 import {ctx, canvas} from "./main.js";
+import Player from "./Player.js"; 
 
-export function initTutorial(obstacles){
-    const w0 = new wall(0, 0, 20, 576, ctx, true, obstacles); 
-    const f0 = new wall(0, 556, 700, 20, ctx, false, obstacles); 
-    const w1 = new wall(700, 526, 20, 50, ctx, true, obstacles);   
-    const f1 = new wall(700, 526, 200, 20, ctx, false, obstacles); 
-    const w2 = new wall(900, 476, 20, 70, ctx, true, obstacles); 
-    const f2 = new wall(900, 476, 124, 20, ctx, false, obstacles); 
-    const w3 = new wall(1006, 396, 20, 100, ctx, true, obstacles); 
-    const f5 = new wall(1006, 396, 300, 20, ctx, false, obstacles); 
-    // const f6 = new wall(0, 300, 200, 20, ctx, false, obstacles); 
-    // const w4 = new wall(200, 300, 20, 100, ctx, true, obstacles); 
-    // const f7 = new wall(200, 400, 300, 20, ctx, false, obstacles); 
-    // const w5 = new wall(500, 400, 20, 50, ctx, true, obstacles);
-    // const f8 = new wall(500, 450, 200, 20, ctx, false, obstacles); 
-    // const w6 = new wall(680, 400, 20, 50, ctx, true, obstacles); 
+export function initTutorial(obstacles){    
+    obstacles.push(new wall(0, 480, 352, 32, ctx, false, obstacles)); 
+    obstacles.push(new wall(-32, 320, 32, 192, ctx, true, obstacles));
+    obstacles.push(new wall(-224, 320, 224, 32, ctx, false, obstacles));
+    obstacles.push(new wall(352, 448, 32, 64, ctx, true, obstacles));
+    obstacles.push(new wall(352, 416, 256, 32, ctx, false, obstacles));
+    obstacles.push(new wall(608, 384, 32, 64, ctx, true, obstacles));
+    obstacles.push(new wall(608, 352, 256, 32, ctx, false, obstacles));
+    obstacles.push(new wall(832, 352, 32, 256, ctx, true, obstacles));
+    obstacles.push(new wall(1024, 384, 32, 256, ctx, true, obstacles));
+    obstacles.push(new wall(1024, 353, 160, 32, ctx, false, obstacles));
+    obstacles.push(new wall(1184, 289, 32, 96, ctx, true, obstacles));
+    obstacles.push(new wall(1184, 257, 256, 32, ctx, false, obstacles));
+    obstacles.push(new wall(1440, 0, 32, 289, ctx, true, obstacles)); 
 }
+
 

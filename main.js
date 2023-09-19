@@ -5,11 +5,14 @@ import { initTutorial } from "./lvlsetup.js";
 export const canvas = document.querySelector('canvas'); 
 export const ctx = canvas.getContext('2d'); 
 
-canvas.width = 1024; 
-canvas.height = 576;
+canvas.width = 1024; //1024
+canvas.height = 576;  //576
+
 const rightBound = 600; 
 const leftBound = 205; 
 const normVelocity = 10; 
+
+const backgroundFill = 'white'; 
 
 let players = []; 
 let obstacles = [];
@@ -20,8 +23,9 @@ function gameLoop(){
     const rightPressed = keyboardState['d'];
     window.requestAnimationFrame(gameLoop); 
 
-    ctx.fillStyle = 'white';
-    
+    ctx.fillStyle = backgroundFill;
+     
+
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     if(upPressed && p1.isGrounded()){
         p1.velocity.y = -1 * normVelocity; 
@@ -71,5 +75,7 @@ window.addEventListener('keyup', (event) => {
 
 const p1 = new Player({position: {x:100, y:350}, velocity: {x: 0, y: 10}});   
 players.push(p1); 
+
+// Start level 
 initTutorial(obstacles); 
 gameLoop();

@@ -9,6 +9,7 @@ export default class Player{
         this.velocity = velocity; 
         this.height = 50; 
         this.width = 50;  
+        this.alive = true; 
     }
 
     draw(){

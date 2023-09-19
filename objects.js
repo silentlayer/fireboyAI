@@ -15,3 +15,4 @@ export default class wall{
         this.canvas.fillRect(this.x, this.y, this.width, this.height); 
     }
 }
+
