@@ -1,7 +1,6 @@
 import Player from "./Player.js";
 import { initTutorial } from "./lvlsetup.js";
 
-
 export const canvas = document.querySelector('canvas'); 
 export const ctx = canvas.getContext('2d'); 
 
@@ -12,11 +11,13 @@ const rightBound = 600;
 const leftBound = 205; 
 const normVelocity = 10; 
 
+//BUILD LEVEL 
 const backgroundFill = 'white'; 
+const [obstacles, players] = initTutorial();  
+const p1 = players[0]; 
 
-let players = []; 
-let obstacles = [];
 
+//GAME LOOP
 function gameLoop(){ 
     const upPressed = keyboardState['w'];
     const leftPressed = keyboardState['a'];
@@ -53,7 +54,7 @@ function gameLoop(){
         } 
     }
     
-    // Collision detection and object drawing
+    //Collision detection
     obstacles.forEach(obstacle => {
         obstacle.draw(); 
     })
@@ -63,7 +64,7 @@ function gameLoop(){
     }   
 }
 
-
+//KEYBOARD LOGGER
 const keyboardState = {}; 
 window.addEventListener('keydown', (event) => {
     keyboardState[event.key] = true;
@@ -71,11 +72,6 @@ window.addEventListener('keydown', (event) => {
 window.addEventListener('keyup', (event) => {
     keyboardState[event.key] = false;
   });
-   
 
-const p1 = new Player({position: {x:100, y:350}, velocity: {x: 0, y: 10}});   
-players.push(p1); 
-
-// Start level 
-initTutorial(obstacles); 
+//START GAME
 gameLoop();
