@@ -9,7 +9,7 @@ export default class Player{
         this.velocity = velocity; 
         this.height = 50; 
         this.width = 50;  
-        this.alive = true; 
+        this.isAlive = true; 
     }
 
     draw(){
@@ -45,11 +45,12 @@ export default class Player{
             this.velocity.x += air_resist; 
         }
     }
-
     collide(obstacles){
         for(let i = 0; i < obstacles.length; i++){
-            let obj = obstacles[i]; 
-            if(obj.wall == true){ 
+            let obj = obstacles[i];
+            
+            //WALL 
+            if(obj.magic == 0){ 
 
                 //on same y level (horizontal collision with wall)
                 if((this.position.y > obj.y && this.position.y < obj.y + obj.height) ||
@@ -63,7 +64,8 @@ export default class Player{
                     }
                 } 
             }
-            else{
+            //FLOOR 
+            else if (obj.magic == 1){
 
                 //on same x level (vertical collision with platform)
                 if((this.position.x > obj.x && this.position.x < obj.x + obj.width) ||
@@ -77,6 +79,19 @@ export default class Player{
                     }
                 }
             }
+            //SPIKE
+            else if(obj.magic == 2){
+                if(this.position.x < obj.x + obj.width &&
+                    this.position.x + this.width > obj.x &&
+                    this.position.y < obj.y + obj.height &&
+                    this.position.y + this.height > obj.y){
+                        this.isAlive = false; 
+                    }
+                continue; 
+            }
+
+
+
 
         } 
     }

@@ -1,4 +1,3 @@
-import Player from "./Player.js";
 import { initTutorial } from "./lvlsetup.js";
 
 export const canvas = document.querySelector('canvas'); 
@@ -12,17 +11,17 @@ const leftBound = 205;
 const normVelocity = 10; 
 
 //BUILD LEVEL 
-const backgroundFill = 'white'; 
-const [obstacles, players] = initTutorial();  
-const p1 = players[0]; 
+const backgroundFill = 'white';  
 
+//START GAME
+let [obstacles, players] = initTutorial();  
+let p1 = players[0];  
 
 //GAME LOOP
 function gameLoop(){ 
     const upPressed = keyboardState['w'];
     const leftPressed = keyboardState['a'];
     const rightPressed = keyboardState['d'];
-    window.requestAnimationFrame(gameLoop); 
 
     ctx.fillStyle = backgroundFill;
      
@@ -60,8 +59,17 @@ function gameLoop(){
     })
     for(let i = 0; i < players.length ; i++){ 
         players[i].update();  
-        players[i].collide(obstacles);    
+        players[i].collide(obstacles);  
     }   
+
+    //Check if dead
+    if (p1.isAlive === false) {
+        // Stop the game loop
+
+        [obstacles, players] = initTutorial(); 
+        p1 = players[0]  
+    }
+    window.requestAnimationFrame(gameLoop);
 }
 
 //KEYBOARD LOGGER
@@ -73,5 +81,6 @@ window.addEventListener('keyup', (event) => {
     keyboardState[event.key] = false;
   });
 
-//START GAME
-gameLoop();
+ 
+gameLoop(); 
+
