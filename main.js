@@ -7,18 +7,12 @@ export const ctx = canvas.getContext('2d');
 
 canvas.width = 1024; 
 canvas.height = 576;
+const rightBound = 600; 
+const leftBound = 205; 
+const normVelocity = 10; 
 
 let players = []; 
 let obstacles = [];
-
-function scroll(player, obstacles){
-    if(player.position.x > 0.7 * canvas.width || player.position.x < 0.3 * canvas.width){
-        obstacles.forEach(obstacle => {
-            obstacle.velocity = -1 * player.velocity.x; 
-            obstacle.update();    
-        })
-    }
-}
 
 function gameLoop(){ 
     const upPressed = keyboardState['w'];
@@ -30,13 +24,29 @@ function gameLoop(){
     
     ctx.fillRect(0, 0, canvas.width, canvas.height);
     if(upPressed && p1.isGrounded()){
-        p1.velocity.y = -10; 
+        p1.velocity.y = -1 * normVelocity; 
     }  
     if(leftPressed){
-        p1.velocity.x = -10; 
+        if(p1.position.x < leftBound && leftPressed){
+            p1.velocity.x = 0; 
+            obstacles.forEach(obstacle => {
+                obstacle.x += normVelocity; 
+            })
+        }
+        else{
+            p1.velocity.x = -1 * normVelocity; 
+        }
     }
     if(rightPressed){
-        p1.velocity.x = 10; 
+        if(p1.position.x > rightBound && rightPressed){
+            p1.velocity.x = 0; 
+            obstacles.forEach(obstacle => {
+                obstacle.x -= normVelocity; 
+            })
+        }
+        else{
+            p1.velocity.x = normVelocity;
+        } 
     }
     
     // Collision detection and object drawing
@@ -46,9 +56,7 @@ function gameLoop(){
     for(let i = 0; i < players.length ; i++){ 
         players[i].update();  
         players[i].collide(obstacles);    
-    } 
-    scroll(p1, obstacles); 
-    console.log(p1.velocity.x); 
+    }   
 }
 
 
@@ -61,7 +69,7 @@ window.addEventListener('keyup', (event) => {
   });
    
 
-const p1 = new Player({position: {x:100, y:0}, velocity: {x: 0, y: 10}});   
+const p1 = new Player({position: {x:100, y:350}, velocity: {x: 0, y: 10}});   
 players.push(p1); 
 initTutorial(obstacles); 
 gameLoop();

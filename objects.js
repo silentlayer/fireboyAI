@@ -7,19 +7,11 @@ export default class wall{
         this.width = width; 
         this.height = height; 
         this.canvas = canvas; 
-        this.wall = wall; 
-        this.velocity = 0; 
+        this.wall = wall;  
         obstacles.push(this); 
     }
     draw(){
         this.canvas.fillStyle = 'black'; 
         this.canvas.fillRect(this.x, this.y, this.width, this.height); 
-    }
-
-    update(){
-        if(this.velocity != 0){
-            this.x += this.velocity; 
-        }
-        this.draw();   
     }
 }
