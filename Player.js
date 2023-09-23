@@ -78,12 +78,6 @@ export default class Player{
                         obj.open = false; 
                     }
                 }
-                // obj.b.forEach(button =>{
-                //     if(this.colDetect(obj.b)){
-                //         obj.open = true; 
-                //         break
-                //     }
-                // })
                 
                 if(obj.open == false){
                     if(obj.flat == true){ 

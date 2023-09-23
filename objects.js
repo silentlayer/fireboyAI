@@ -2,6 +2,7 @@ import {ctx, canvas} from "./main.js";
 const air_resist = 1; 
 
 export class wall{
+
     constructor(x, y, width, height){
         this.x = x; 
         this.y = y; 
@@ -59,14 +60,14 @@ export class flag{
     }
 }
 export class door{
-    constructor(x, y, width, height, bX, bY, flat){
+    constructor(x, y, width, height, list, flat){
         this.x = x; 
         this.y = y; 
         this.width = width; 
         this.height = height; 
         this.magic = 3; 
         this.canvas = ctx; 
-        this.b = [new button(bX, bY)]  
+        this.b = [new button(list[0], list[1]), new button(list[2], list[3])]  
         this.open = false; 
         this.flat = flat; 
     }

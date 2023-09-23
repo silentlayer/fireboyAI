@@ -20,7 +20,7 @@ export function initTutorial(){
     obstacles.push(new floor(1184, 257, 256, 32));
     obstacles.push(new wall(1440, 0, 32, 289)); 
     obstacles.push(new spike(864, 544, 160, 32)); 
-    obstacles.push(new door(864, 352, 160, 32, 800, 351, true)); 
+    obstacles.push(new door(864, 352, 160, 32, [800, 351, 1056, 351], true)); 
     obstacles.push(new flag(1344, 256)); 
     return [obstacles, players]; 
 }
