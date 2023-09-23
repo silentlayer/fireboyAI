@@ -35,6 +35,12 @@ function gameLoop(){
             p1.velocity.x = 0; 
             obstacles.forEach(obstacle => {
                 obstacle.x += normVelocity; 
+                if (obstacle.magic == 3){
+                    obstacle.b.forEach(button => {
+                        button.x += normVelocity
+                    })
+                     
+                }
             })
         }
         else{
@@ -46,6 +52,11 @@ function gameLoop(){
             p1.velocity.x = 0; 
             obstacles.forEach(obstacle => {
                 obstacle.x -= normVelocity; 
+                if (obstacle.magic == 3){
+                    obstacle.b.forEach(button => {
+                        button.x -= normVelocity
+                    }) 
+                }
             })
         }
         else{

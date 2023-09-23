@@ -44,5 +44,52 @@ export class spike{
         this.canvas.fillRect(this.x, this.y, this.width, this.height); 
     }
 }
+export class flag{
+    constructor(x, y){
+        this.x = x; 
+        this.y = y; 
+        this.width = 32; 
+        this.height = 8; 
+        this.magic = 4; 
+        this.canvas = ctx; 
+    }
+    draw(){
+        this.canvas.fillStyle = 'green'; 
+        this.canvas.fillRect(this.x, this.y, this.width, this.height);
+    }
+}
+export class door{
+    constructor(x, y, width, height, bX, bY, flat){
+        this.x = x; 
+        this.y = y; 
+        this.width = width; 
+        this.height = height; 
+        this.magic = 3; 
+        this.canvas = ctx; 
+        this.b = [new button(bX, bY)]  
+        this.open = false; 
+        this.flat = flat; 
+    }
+    draw(){
+        this.canvas.fillStyle = 'yellow'; 
+        this.b.forEach(button => {
+            this.canvas.fillRect(button.x, button.y, button.width, button.height); 
+        })
+        if(this.open == true){
+            this.canvas.fillStyle = 'white'; 
+        }
+        this.canvas.fillRect(this.x, this.y, this.width, this.height); 
+        
+    }
+}
+
+class button{
+    constructor(x, y){
+        this.x = x; 
+        this.y = y; 
+        this.width = 32; 
+        this.height = 8; 
+    }
+}
 
 
